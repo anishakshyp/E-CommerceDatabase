@@ -19,7 +19,7 @@ WHERE Save_to_Shopping_Cart.pid IN (SELECT Product.PId FROM Product WHERE SId=8)
 -- query the name and address of orders delivered on 2023-02-17
 SELECT name, streetAddr, city
 FROM Address
-WHERE addrid IN (SELECT AddrId FROM Deliver_To WHERE TimeDelivered = '2023-02-17');
+WHERE addrid IN (SELECT AddrId FROM Deliver_To WHERE TimeDelivered = '2017-02-17');
 
 
  -- query the comments of product 12345678 
@@ -39,7 +39,7 @@ WHERE userId IN (SELECT userId FROM users WHERE name LIKE 'A%');
 
 UPDATE Orders
 SET paymentState = 'Unpaid'
-WHERE creationTime > '2023-01-01' AND totalAmount > 50;
+WHERE creationTime > '2017-01-01' AND totalAmount > 50;
 
 -- Update the name and contact phone number of address where the provice is Quebec and city is montreal.
 
@@ -49,7 +49,7 @@ WHERE province = 'Quebec' AND city = 'Montreal';
 
 -- Delete the store which opened before year 2017
 DELETE FROM save_to_shopping_cart
-WHERE addTime < '2023-01-01';
+WHERE addTime < '2017-01-01';
 
 -- ------------------------------------------- --
 -- Views 
@@ -73,7 +73,7 @@ SELECT PId, name, price
 FROM Product
 WHERE pid IN (SELECT PId FROM OrderItem WHERE itemId IN 
               (SELECT itemId FROM Contain WHERE orderNumber IN
-               (SELECT orderNumber FROM Payment WHERE payTime > '2023-01-01' AND payTime < '2023-12-31')
+               (SELECT orderNumber FROM Payment WHERE payTime > '2016-01-01' AND payTime < '2016-12-31')
               )
              );
 
@@ -102,9 +102,9 @@ CREATE TABLE Save_to_Shopping_Cart
     ,CHECK (quantity <= 10 OR addTime > '2023-01-01')
 );
 
-INSERT INTO Save_to_Shopping_Cart VALUES(18,67890123,'2023-11-23',9);
-INSERT INTO Save_to_Shopping_Cart VALUES(24,67890123,'2023-02-22',8);
-INSERT INTO Save_to_Shopping_Cart VALUES(5,56789012,'2023-10-17',11); -- error
+INSERT INTO Save_to_Shopping_Cart VALUES(18,67890123,'2016-11-23',9);
+INSERT INTO Save_to_Shopping_Cart VALUES(24,67890123,'2017-02-22',8);
+INSERT INTO Save_to_Shopping_Cart VALUES(5,56789012,'2016-10-17',11); -- error
 
 -- Check whether the ordered item has 0 to 10 quantities
 
